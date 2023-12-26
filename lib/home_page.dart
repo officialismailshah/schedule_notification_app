@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart'
+    as datatTimePicker;
 import 'Services/notifi_service.dart';
 
 DateTime scheduleTime = DateTime.now();
@@ -21,10 +21,10 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             DatePickerTxt(),
             ScheduleBtn(),
           ],
@@ -48,12 +48,11 @@ class _DatePickerTxtState extends State<DatePickerTxt> {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        DatePicker.showDateTimePicker(
-          context,
-          showTitleActions: true,
-          onChanged: (date) => scheduleTime = date,
-          onConfirm: (date) {},
-        );
+        datatTimePicker.DatePicker.showDateTimePicker(context,
+            showTitleActions: true,
+            minTime: DateTime.now(),
+            maxTime: DateTime(2023, 12, 31),
+            onChanged: (value) {});
       },
       child: const Text(
         'Select Date Time',
